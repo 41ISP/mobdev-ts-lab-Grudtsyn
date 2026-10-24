@@ -1,11 +1,29 @@
 import PaymentForm from "../components/PaymentForm"
 import PaymentItem from "../components/PaymentItem"
 import { formatMoney } from "../format"
+import { usePaymentsStore } from "../store"
+import { useState, useEffect } from "react"
+import { IPayment } from "../types"
+
 
 export default function PaymentsPage() {
-    const sorted: any[] = [1]
-    const total = 0
-    const paid = 0
+    const {items} = usePaymentsStore()
+    const [sorted, setSorted] = useState<IPayment[]>([])
+
+ useEffect(() => {
+    const copy = [...items]
+    const sortedItems = copy.sort((a, b) => {
+    const diffPaid = Number(a.paid) - Number(b.paid)
+      if (diffPaid !== 0) return diffPaid
+      return a.due.localeCompare(b.due)
+    })
+    setSorted(sortedItems)
+    setTotal(items.reduce((acc, item)=> acc + item.amount, 0))
+    setPaid(items.filter((e) => e.paid !== false).reduce((acc, item)=> acc + item.amount, 0))
+  }, [items])
+
+    const [total, setTotal] = useState<number>(0)
+    const [paid, setPaid] = useState<number>(0)
 
     return (
         <>
@@ -34,7 +52,7 @@ export default function PaymentsPage() {
             ) : (
                 <ul className="list">
                     {sorted.map((p) => (
-                        <PaymentItem key={p.id} />
+                        <PaymentItem key={p.id} payment={p}/>
                     ))}
                 </ul>
             )}
