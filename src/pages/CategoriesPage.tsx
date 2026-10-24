@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { CATEGORY_LIST, CATEGORY_LABELS } from "../categories"
 import { formatMoney } from "../format"
-import { IPayment } from "../types"
 import { usePaymentsStore } from "../store"
 
 type Category = typeof CATEGORY_LIST[number]

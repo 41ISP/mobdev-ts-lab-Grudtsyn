@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ZXCURSED</string>
+    <string name="title_activity_main">ZXCURSED</string>
+    <string name="package_name">coil.coil.coil</string>
+    <string name="custom_url_scheme">coil.coil.coil</string>
+</resources>

@@ -8,7 +8,6 @@ import { IPayment } from "../types"
 
 export default function PaymentsPage() {
     const {items} = usePaymentsStore()
-    const {addPayment} = usePaymentsStore()
     const [sorted, setSorted] = useState<IPayment[]>([])
 
  useEffect(() => {
